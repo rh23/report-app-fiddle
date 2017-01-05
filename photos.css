@@ -1,0 +1,190 @@
+:root {
+	/* variables */
+	--darkest: 		black;
+	--dark:			darkgrey;
+	--mid: 			#e5e5e5;
+	--light: 		#f8f8f8;
+	--lightest: 	white;
+	--accent: 		#984B43;
+
+	--imgMaxWidth: 	300px;
+	--imgMinWidth: 	100px;
+}
+
+
+/* global classes */
+.pe--iv 	{		display: none !important;	}
+
+
+.app {
+	/* global settings */
+	background: white;
+	box-sizing: border-box;
+	margin: 0;
+	
+	/* parent flex for .pe_toolbar & .pe_main */
+	height: 100vh;  /* Important to simulate .toolbar fixed position */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+}
+
+
+/* normal classes */
+.pe_toolbar {
+	flex: 0 0 auto;
+	background-color: var(--light);	
+	padding: 10px;		
+	/*border: 1px solid black;*
+	position: fixed;*
+	width: 100%;*
+	z-index: 1;*/
+
+	/* parent flex for toolbar items */
+	display: flex;
+	flex-flow: row wrap;
+}
+
+/*.pe_toolbar {
+	/* flex-basis: 100%; *
+	background-color: var(--light);			
+	min-height: 5rem;
+	/*border: 1px solid black;*
+	position: fixed;
+	width: 100vw;
+	z-index: 1;
+
+	/* parent flex for toolbar items *
+	display: flex;
+	flex-flow: row wrap;
+} */
+.pe_toolbar-button {
+	background-color: var(--light);
+	border: 1px solid var(--mid);
+	width: 4rem;
+	height: 4rem;
+	margin: 0 2px 0 2px;
+	display: inline-block;
+	padding: 0;
+}
+.pe_toolbar-button:hover {
+	background: var(--mid);
+	border-color: var(--dark);
+}
+
+
+
+.pe_main {
+	flex: 1 1 auto;
+	border: 1px solid red;
+	overflow: auto;	/*allow scrolling*/
+	/* parent flex for .pe_section-heading-wrapper & .pe_section-wrapper *
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: left; */
+}
+
+/*.pe_main {
+	/*flex-basis: 100%;*
+	border: 1px solid red;
+	padding-top: 5rem;
+
+	/* parent flex for .pe_section-heading-wrapper & .pe_section-wrapper *
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: left; *
+}*/
+
+.pe_section-heading-wrapper {
+	border: 1px solid black;
+	padding-left: 2rem;	
+	/* flexbox children of .pe_section-wrapper */
+	flex-basis: 100%;		
+	/* parent flexbox for .h1 & .pe_heading_button *
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between; */
+	position: relative;
+}
+.pe_section-heading-wrapper h1 {
+	/* child flex of .pe_section-heading-wrapper *
+	flex: 0 1 50%; */
+	display: inline-block;
+}		
+.pe_heading_button { 
+	background-color: var(--light);
+	border: 1px solid var(--mid);
+	cursor: pointer;
+	/* child flex of .pe_section-heading-wrapper *
+	flex: 0 1 auto; */
+	position: absolute;
+	right: 0;
+	height: 100%;
+}
+.pe_heading_button:hover { 
+	background: var(--mid);
+	border: none;
+	cursor: pointer;
+	/* child flex of .pe_section-heading-wrapper *
+	flex: 0 1 auto; */
+	position: absolute;
+	right: 0;
+	height: 100%;
+}
+
+
+.pe_section-wrapper {
+	/* children of .pe_main */
+	/* parent flex for .pe_unit-wrapper */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.pe_unit-wrapper {
+	/* flexbox children of .section-wrapper */
+	/* flex-basis: 25%; */
+}
+.pe_img-wrapper {
+}
+.pe_img-wrapper img {
+	max-width: var(--imgMaxWidth);
+	height: auto;
+	/* prevent default select behaviour via click/drag */
+	user-select: none; 
+}
+
+.pe_caption {
+	border: 1px solid black;
+	background: yellow;
+	margin: 0;
+	padding-left: 1rem;
+	max-width: calc(var(--imgMaxWidth) - 1rem - 2px); /*padding & border*/
+}
+.pe_overlay {
+	position: relative;
+}
+.pe_overlay::before {
+	position: absolute; /* relative to parent container */
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display: none;
+	background: rgba(255,0,0,0.3);
+}
+.pe_overlay:hover::before {
+	display: block;
+}
+
+.pe_selected {
+	position: relative;
+}
+.pe_selected::before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	background: rgba(0,255,0,0.2);
+}
